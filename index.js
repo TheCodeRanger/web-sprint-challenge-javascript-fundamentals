@@ -25,7 +25,7 @@ myFunction();
 /* Create a function called `summation` that accepts a parameter and uses a counter to return the summation of that number. For example, `summation(4)` should return 10 because 1+2+3+4 is 10. Note, you may use a for loop for this function if you wish */
 const summation = (number) => {
     let counter = 0;
-    for(i = 0; i <= number; i++){
+    for(let i = 0; i <= number; i++){
       counter += i;
     }
     console.log(counter);
@@ -61,8 +61,8 @@ const zooAnimals = [
   /* 🦁🦁🦁 Request 2: .map() 🦁🦁🦁
   The zoos need a list of all their animal's names (animal_name only) converted to lower case. Using map, create a new array of strings named lowCaseAnimalNames, each string following this pattern: "jackal, asiatic". Log the resut.
   */
- const lowCaseAnimalNames = zooAnimals.map(item => `${item.animal_name.toLowerCase()}`);
-  console.log(lowCaseAnimalNames);
+ const lowerCaseNames = zooAnimals.map(item => `${item.animal_name.toLowerCase()}`);
+  console.log(lowerCaseNames);
   
   /* 🦁🦁🦁 Request 3: .filter() 🦁🦁🦁
   The zoos are concerned about animals with a lower population count. Using filter, create a new array of objects called lowPopulationAnimals which contains only the animals with a population less than 5.
@@ -74,15 +74,12 @@ const zooAnimals = [
   /* 🦁🦁🦁 Request 4: .reduce() 🦁🦁🦁
   The zoos need to know their total animal population across the United States. Find the total population from all the zoos using the .reduce() method. Remember the reduce method takes two arguments: a callback (which itself takes two args), and an initial value for the count.
   */
-  // function USApop(/*Your Code Here*/){
-  //   /*Your Code Here*/
-  // }
-  
-    const totalPop = zooAnimals.reduce((acc, item) => {
-      return acc + item.population;
-    },0);
-    console.log(totalPop);
-
+ function USApop(zooAnimals){
+  zooAnimals.reduce((acc, item) => {
+    return acc + item.population;
+  },0);
+  console.log(USApop);
+}
   
   // 🦁🦁🦁 Callbacks 🦁🦁🦁  
   /* 🦁🦁🦁 Step 1: Create a higher-order function 🦁🦁🦁
@@ -135,8 +132,10 @@ const zooAnimals = [
 /* 🐴🐴🐴 Step 1: Base Constructor 🐴🐴🐴
   Create a constructor function named CuboidMaker that accepts properties for length, width, and height which can be initialized as an object
 */
-function CuboidMaker(/*Your Code Here */){
-  /*Your Code Here */
+function CuboidMaker(length, width, height){
+  this.length = length;
+  this.width = width;
+  this.height = height;
 }
 
 
@@ -144,6 +143,9 @@ function CuboidMaker(/*Your Code Here */){
   Create a method using CuboidMaker's prototype that returns the volume of a given cuboid's length, width, and height
   Formula for cuboid volume: length * width * height   */
 
+CuboidMaker.prototype.volume = function() {
+    return this.length * this.width * this.height;
+}
 
 
 
@@ -153,6 +155,9 @@ function CuboidMaker(/*Your Code Here */){
   Formula for cuboid surface area of a cube: 
   2 * (length * width + length * height + width * height)  */
 
+  CuboidMaker.prototype.surfaceArea = function() {
+    return 2 * (this.length * this.width + this.length * this.height + this.width * this.height);
+  }
 
 
 
@@ -160,15 +165,15 @@ function CuboidMaker(/*Your Code Here */){
 /* 🐴🐴🐴 Step 4: Create a new object that uses CuboidMaker 🐴🐴🐴
   Create a cuboid object that uses the new keyword to use our CuboidMaker constructor
   Add properties and values of length: 4, width: 5, and height: 5 to cuboid. */
-
+ const cuboid = new CuboidMaker(4, 5, 5);
 
 
 
 
 // 🐴🐴🐴 Test your volume and surfaceArea methods by uncommenting the logs below: 🐴🐴🐴
 // ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️
-// console.log(cuboid.volume()); // 100
-// console.log(cuboid.surfaceArea()); // 130
+console.log(cuboid.volume()); // 100
+console.log(cuboid.surfaceArea()); // 130
  
 
 // 🦄🦄🦄 Topic 4: Classes 🦄🦄🦄 //
